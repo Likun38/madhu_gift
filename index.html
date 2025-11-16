@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Madhu 🌸</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Quicksand&display=swap');
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top left, #ffdde1, #fff0f5, #ffe6f0);
+  font-family: 'Dancing Script', cursive;
+  color: #3e2a27;
+  text-align: center;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Animated romantic glow background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(255,182,193,0.3), transparent 40%),
+              radial-gradient(circle at 80% 50%, rgba(255,192,203,0.25), transparent 40%),
+              radial-gradient(circle at 50% 70%, rgba(255,160,180,0.25), transparent 45%);
+  animation: bgmove 30s ease-in-out infinite alternate;
+  z-index: -1;
+}
+@keyframes bgmove {
+  from { background-position: 20% 30%, 80% 50%, 50% 70%; }
+  to { background-position: 25% 25%, 85% 55%, 45% 65%; }
+}
+
+/* Falling hearts animation */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 18px;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* General layout */
+.container {
+  padding: 40px 5vw;
+  animation: fadeIn 1.2s ease;
+  max-width: 900px;
+  margin: auto;
+}
+
+h1, h2 {
+  animation: float 3s ease-in-out infinite alternate;
+  color: #8b3e60;
+  text-shadow: 0 0 10px rgba(255,182,193,0.5);
+}
+
+button {
+  background: linear-gradient(135deg, #ff8eb3, #ffd5e4);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 28px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 15px;
+  font-family: 'Quicksand', sans-serif;
+  transition: 0.3s;
+}
+button:hover {
+  background: #ffb0cd;
+  box-shadow: 0 0 12px rgba(255,192,203,0.9);
+}
+
+input {
+  border: 2px solid #ffc8da;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 6px;
+  width: 90%;
+  max-width: 350px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+}
+
+.hidden { display: none; }
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.house-scene {
+  border: 2px solid #ffc0dd;
+  border-radius: 15px;
+  background: rgba(255, 248, 251, 0.85);
+  box-shadow: 0px 0px 15px rgba(255,182,193,0.5);
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.letter-image {
+  font-size: 80px;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes float {
+  from {transform: translateY(0);}
+  to {transform: translateY(-8px);}
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 768px) {
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  p, input { font-size: 16px; }
+  button { font-size: 16px; padding: 10px 22px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Romantic background music -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2024/05/18/audio_74f8a9c5dd.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="confetti"></canvas>
+
+<!-- Intro -->
+<div class="container" id="intro">
+  <div class="character" style="font-size:120px;">🧚‍♀️</div>
+  <h1>Hey Madhu 🌼</h1>
+  <p>Welcome, my favorite person to smile with.</p>
+  <p>Let’s go on a small fantasy trip that’s all about you!</p>
+  <button onclick="showQuestions()">Let’s Start</button>
+</div>
+
+<!-- Questions -->
+<div class="container hidden" id="questions">
+  <h2>Let’s see what’s inside your heart 💖, answer in detail</h2>
+  <form id="questionForm" action="https://formspree.io/f/xdkylgdp" method="POST">
+    <p>1. What little things always make your day better?</p><input name="q1" required><br>
+    <p>2. Which memory about us never fails to make you smile?</p><input name="q2" required><br>
+    <p>3. What kind of places make you feel peaceful?,maybe we can go together</p><input name="q3" required><br>
+    <p>4. How do you usually comfort someone who’s sad?</p><input name="q4" required><br>
+    <p>5. On a scale of 1–10, how much do you me?</p><input name="q5" required><br>
+    <p>6. What does friendship mean to you truly?</p><input name="q6" required><br>
+    <p>7. What helps you calm down when you’re upset?, I can do that</p><input name="q7" required><br>
+    <p>8. Do you enjoy quiet walks or long talks more?</p><input name="q8" required><br>
+    <p>9. Will you let me put my head on your shoulder, 
+    for I never had the gift of that</p><input name="q9" required><br>
+    <p>10. What’s something you’d like me to do, when we sit together?</p><input name="q10" required><br>
+    <button type="submit" onclick="startGame()">Next ➡️</button>
+  </form>
+</div>
+
+<!-- Game -->
+<div class="container hidden" id="game">
+  <h2>Tiny Game Break 🎮</h2>
+  <p>Tap the heart till you reach 50 points!</p>
+  <div id="score">Score: 0</div>
+  <div id="heart" style="font-size:80px;cursor:pointer;">💖</div>
+</div>
+
+<!-- Journey -->
+<div class="container hidden" id="journey">
+  <h2>The Fantasy Path 🌈</h2>
+  <p>Five little homes, five tiny letters waiting for you.</p>
+  <div>
+    <button onclick="visitHouse(1)">🏠 Home 1</button>
+    <button onclick="visitHouse(2)">🏡 Home 2</button>
+    <button onclick="visitHouse(3)">🏘️ Home 3</button>
+    <button onclick="visitHouse(4)">🏕️ Home 4</button>
+    <button onclick="visitHouse(5)">🏯 Home 5</button>
+  </div>
+  <div id="letterBox" class="house-scene"></div>
+</div>
+
+<!-- Final Envelope -->
+<div class="container hidden" id="end">
+  <h2>You reached the end of the lane 💌</h2>
+  <p>There’s one letter left… open it?</p>
+  <button onclick="finalConfirm()">Yes</button>
+</div>
+
+<!-- Final Letter -->
+<div class="container hidden" id="finalLetter">
+  <h2>Dear Madhu,</h2>
+  <p style="font-size:22px;line-height:1.7;width:85%;margin:auto;">
+    You’ve made it through all the laughter and quiet moments of this little journey.  
+    Some people bring warmth by simply being themselves; you’re one of them.  
+    You make ordinary days softer, and small things feel like calm sunsets.  
+    Madhu, I may not mean much, but I will do everything in my power, to
+    keep you happy and cared,
+  </p>
+</div>
+
+<script>
+let score = 0;
+
+// Step transitions
+function showQuestions() {
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('questions').style.display = 'block';
+}
+
+function startGame() {
+  event.preventDefault();
+  document.getElementById('questions').style.display = 'none';
+  document.getElementById('game').style.display = 'block';
+  const heart = document.getElementById('heart');
+  heart.onclick = () => {
+    score++;
+    document.getElementById('score').textContent = "Score: " + score;
+    heart.style.position = "relative";
+    heart.style.left = Math.random() * 200 - 100 + "px";
+    heart.style.top = Math.random() * 200 - 100 + "px";
+    if (score >= 50) {
+      triggerConfetti();
+      setTimeout(() => {
+        document.getElementById('game').style.display = 'none';
+        document.getElementById('journey').style.display = 'block';
+      }, 1500);
+    }
+  };
+}
+
+// Each house’s letter scene
+function visitHouse(num) {
+  const details = [
+    {icon: "🔥🐱🪶", text: "You bring a warmth that feels like a small fireplace on a rainy night."},
+    {icon: "🐾🎨🕯️", text: "There’s creativity in your soul. Even silence becomes art when you’re around."},
+    {icon: "🌿🐦🫖", text: "The calm you bring feels like sipping tea while birds sing softly outside."},
+    {icon: "🌙📚🕯", text: "Some hearts heal others without realizing it. Yours has done that more than once."},
+    {icon: "🌸🌈💫", text: "You are proof that gentle things can still be strong and brilliant."}
+  ];
+  
+  const scene = details[num-1];
+  const letterBox = document.getElementById('letterBox');
+  letterBox.innerHTML = `
+    <div class="letter-image">${scene.icon}</div>
+    <p>${scene.text}</p>
+  `;
+
+  if (num === 5) {
+    setTimeout(() => {
+      document.getElementById('journey').style.display = 'none';
+      document.getElementById('end').style.display = 'block';
+    }, 2000);
+  }
+}
+
+// Confirm final letter
+function finalConfirm() {
+  if (confirm("Are you sure you want to open it?")) {
+    document.getElementById('end').style.display = 'none';
+    document.getElementById('finalLetter').style.display = 'block';
+  }
+}
+
+// Confetti animation
+function triggerConfetti() {
+  const duration = 2 * 1000;
+  const end = Date.now() + duration;
+  const colors = ['#ff77a9', '#ffb2d0', '#fff0f7', '#ffc8dd', '#ffd6ec'];
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = window.innerHeight;
+  const pieces = [];
+  for (let i = 0; i < 150; i++) {
+    pieces.push({ x: Math.random()*w, y: Math.random()*h-h, r: 5 + Math.random()*10, c: colors[Math.floor(Math.random()*colors.length)], s: Math.random()*3+2 });
+  }
+  const render = () => {
+    ctx.clearRect(0,0,w,h);
+    for (let p of pieces) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.c; ctx.fill();
+      p.y += p.s;
+      if (p.y > h) p.y = -10;
+    }
+    if (Date.now() < end) requestAnimationFrame(render);
+  };
+  render();
+}
+
+// Falling hearts with varied sizes and colors
+function createHearts() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  const colors = ['#ff6b9a', '#ff96b8', '#ffa7c5', '#ffc1d9', '#fff0f5'];
+  heart.textContent = '💖';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = 14 + Math.random()*20 + 'px';
+  heart.style.color = colors[Math.floor(Math.random()*colors.length)];
+  heart.style.animationDuration = (3 + Math.random() * 4) + 's';
+  document.body.appendChild(heart);
+  setTimeout(() => { heart.remove(); }, 7000);
+}
+setInterval(createHearts, 350);
+</script>
+</body>
+</html>
